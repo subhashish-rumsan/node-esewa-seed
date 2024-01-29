@@ -1,5 +1,6 @@
 const express = require("express");
 const createSignature = require("./utility");
+const handleEsewaSuccess = require("./middleware/handleEsewaSuccess");
 const app = express();
 
 const cors = require("cors");
@@ -49,7 +50,9 @@ app.post("/api/create/order", (req, res) => {
   }
 });
 
-app.get("/api/esewa/success", (req, res) => {});
+app.get("/api/esewa/success", handleEsewaSuccess, (req, res) => {
+  res.send("success");
+});
 
 app.listen(3000, () => {
   console.log(`App listening on port 3000`);
